@@ -7,6 +7,9 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config=./build/webpack.config.js  --open  --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=./build/webpack.config.js"
   },
+  "theme": {
+    "hd": "2px"
+  },
   "dependencies": {
     "antd-mobile": "^2.1.4",
     "react": "^16.2.0",

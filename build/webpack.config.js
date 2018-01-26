@@ -8,11 +8,12 @@ const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plug
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const CUR_ENV = require('./env')[process.env.NODE_ENV]
 const isBundle = CUR_ENV.env === 'production'
-
+process.noDeprecation = true
+const theme = require('../package.json').theme
 //
 const config = {
   entry: {
-    main: './src/main.jsx'
+    main: './src/main.jsx',
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -27,19 +28,20 @@ const config = {
         loader: 'babel-loader'
       },
       {
-        test: /\.less$|.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: true // css压缩
-              }
-            }, 'less-loader'
-          ]
-        })
-      }
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.less$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {loader: 'less-loader', options: {modifyVars: theme}},
+        ],
+      },
     ]
   },
   devtool: isBundle ? false : '#cheap-module-eval-source-map',
@@ -84,7 +86,18 @@ const config = {
     }),
     new webpack.DefinePlugin({
       CUR_ENV: JSON.stringify(CUR_ENV)
-    })
+    }),
+    new HtmlWebpackIncludeAssetsPlugin({
+      assets: [
+        {
+          path: '//at.alicdn.com/t/font_501872_3zug8utz5a7wg66r.css',
+          type: 'css'
+        },
+      ],
+      append: false,
+      publicPath: ''
+    }),
+
   ]
 }
 if (isBundle) {
@@ -101,6 +114,10 @@ if (isBundle) {
     new HtmlWebpackIncludeAssetsPlugin({
       assets: [
         {
+          path: '//at.alicdn.com/t/font_501872_3zug8utz5a7wg66r.css',
+          type: 'css'
+        },
+        {
           path: '//cdn.bootcss.com/react/16.2.0/umd/react.production.min.js',
           type: 'js'
         },
@@ -115,7 +132,7 @@ if (isBundle) {
       ],
       append: false,
       publicPath: ''
-    })
+    }),
   )
   config.externals = {
     'react': 'React',
