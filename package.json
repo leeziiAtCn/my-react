@@ -7,16 +7,13 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config=./build/webpack.config.js  --open  --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=./build/webpack.config.js"
   },
-  "theme": {
-    "hd": "2px"
-  },
   "dependencies": {
-    "antd-mobile": "^2.1.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
+    "autoprefixer": "^7.2.5",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-import": "^1.6.3",
@@ -35,8 +32,11 @@
     "http-proxy-middleware": "^0.17.4",
     "less": "^2.7.2",
     "less-loader": "^4.0.3",
+    "postcss-loader": "^2.0.10",
+    "postcss-pxtorem": "^4.0.1",
     "react-app-rewired": "^1.4.0",
     "style-loader": "^0.19.0",
+    "styled-components": "^3.0.2",
     "url-loader": "^0.6.2",
     "webpack": "^3.8.1",
     "webpack-bundle-analyzer": "^2.9.1",

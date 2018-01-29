@@ -19,7 +19,7 @@
   "plugins": [
     "transform-runtime",
     "syntax-dynamic-import",
-    ["import", { "libraryName": "antd-mobile",  "style": true }],
+//    ["import", { "libraryName": "antd-mobile",  "style": true }],
     ["transform-class-properties", { "spec": true }]
   ]
 }

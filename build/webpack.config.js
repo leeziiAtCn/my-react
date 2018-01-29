@@ -6,14 +6,14 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const cssOpts = require('./css.config')
 const CUR_ENV = require('./env')[process.env.NODE_ENV]
 const isBundle = CUR_ENV.env === 'production'
 process.noDeprecation = true
-const theme = require('../package.json').theme
 //
 const config = {
   entry: {
-    main: './src/main.jsx',
+    main: './src/main.jsx'
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -28,20 +28,29 @@ const config = {
         loader: 'babel-loader'
       },
       {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-        ],
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules:true,
+                minimize: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: cssOpts
+            },
+            'less-loader?modules'
+          ]
+        })
       },
       {
-        test: /\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          {loader: 'less-loader', options: {modifyVars: theme}},
-        ],
-      },
+        test: /\.css$/,
+        loader: "style-loader!css-loader?modules"
+      }
     ]
   },
   devtool: isBundle ? false : '#cheap-module-eval-source-map',
@@ -65,7 +74,7 @@ const config = {
     disableHostCheck: true,
     proxy: {
       '*': {
-        target: 'http://www.wsxqt.com/',
+        target: 'http://hgbl.dianpiao360.com/',
         // target: 'http://hgbl.dianpiao360.com/',
         changeOrigin: true,
         secure: false
@@ -92,11 +101,11 @@ const config = {
         {
           path: '//at.alicdn.com/t/font_501872_3zug8utz5a7wg66r.css',
           type: 'css'
-        },
+        }
       ],
       append: false,
       publicPath: ''
-    }),
+    })
 
   ]
 }
@@ -132,7 +141,7 @@ if (isBundle) {
       ],
       append: false,
       publicPath: ''
-    }),
+    })
   )
   config.externals = {
     'react': 'React',
