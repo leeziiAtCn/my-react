@@ -1,38 +1,44 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
-import TabItem from './tab-item'
+import { TabBar } from 'antd-mobile'
 
-const AppTabBar = styled.div`
-background:#fefefe;
-line-height: 3.2rem;
-border-top: 1px solid #ddd;
-display: flex;
+import styled from 'styled-components'
+
+const AppTabBar = styled(TabBar)`
+
 `
-export default class Header extends Component {
+const AppTabBarItem = styled(TabBar.Item)`
+
+`
+const TabIcon = styled.div`
+font-size: .4rem;
+`
+
+export default class AppHeaderTabBar extends Component {
   constructor () {
     super()
     this.state = {
+      selectedTab: '#/home',
       tabs: [
         {
           text: '主页',
-          icon: '',
-          activeIcon: '',
+          icon: 'icon-homepage',
+          activeIcon: 'icon-homepage_fill',
           activeColor: '',
           path: '#/home',
           active: true
         },
         {
           text: '钱包',
-          icon: '',
-          activeIcon: '',
+          icon: 'icon-coupons',
+          activeIcon: 'icon-coupons_fill',
           activeColor: '',
           path: '#/wallet/income',
           active: false
         },
         {
           text: '我的',
-          icon: '',
-          activeIcon: '',
+          icon: 'icon-people',
+          activeIcon: 'icon-people_fill',
           activeColor: '',
           path: '#/mine',
           active: false
@@ -42,23 +48,32 @@ export default class Header extends Component {
   }
 
   changeTab = ({path}, index) => {
-    const tabs = [...this.state.tabs]
-    tabs.forEach(v => v.active = false)
-    tabs[index].active = true
     this.setState({
-      tabs
+      selectedTab:path
     })
-    window.location.replace(path)
+    // window.location.replace(path)
   }
 
   render () {
     return (
-      <AppTabBar>
+      <AppTabBar
+        unselectedTintColor="#949494"
+        tintColor="#33A3F4"
+        barTintColor="white"
+      >
         {
-          this.state.tabs.map((tab, index) => (
-            <TabItem tab={tab} index={index} clickCallBack={this.changeTab} key={tab.path} active={tab.active}/>
+          this.state.tabs.map((tab,index) => (
+            <AppTabBarItem
+              title={tab.text}
+              key={tab.path}
+              icon={<TabIcon className={'iconfont ' + tab.icon}/>}
+              selectedIcon={<TabIcon className={'iconfont ' + tab.activeIcon}/>}
+              selected={this.state.selectedTab === tab.path}
+              onPress={this.changeTab.bind(this,tab,index)}
+            />
           ))
         }
+
       </AppTabBar>
     )
   }

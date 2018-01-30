@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { HashRouter, Switch, Route, Link, Redirect } from 'react-router-dom'
-import Header from 'layout/header'
+import AppHeader from 'layout/header'
 import TabBar from 'layout/tab-bar'
 import Home from 'page/home'
 import Mine from 'page/mine'
@@ -17,7 +17,7 @@ flex: 1;
 const Layout = () => (
   <HashRouter>
     <App>
-      <Header/>
+      <AppHeader/>
       <AppMain>
         <Switch>
           <Redirect exact path='/' to="/home"/>

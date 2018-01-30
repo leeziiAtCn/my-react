@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
-import { Button } from 'antd-mobile'
+import styled from 'styled-components'
 
+import HomeCarousel from './carousel'
+const Test = styled.div`
+background:red;
+width: 100px;
+height: 100px;
+border: 10px solid black;
+`
 export default class Home extends Component {
   constructor () {
     super()
@@ -10,7 +17,8 @@ export default class Home extends Component {
   render () {
     return (
       <div>
-        <Button type='primary'>1</Button>
+        <HomeCarousel/>
+        <Test/>
       </div>
     )
   }

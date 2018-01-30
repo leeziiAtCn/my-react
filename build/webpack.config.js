@@ -30,6 +30,10 @@ const config = {
         loader: 'babel-loader'
       },
       {
+        test:/\.css$/,
+        loader: 'css-loader'
+      },
+      {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
@@ -99,7 +103,7 @@ const config = {
     new HtmlWebpackIncludeAssetsPlugin({
       assets: [
         {
-          path: '//at.alicdn.com/t/font_501872_3zug8utz5a7wg66r.css',
+          path: '//at.alicdn.com/t/font_559336_r1h392rwr8oj38fr.css',
           type: 'css'
         }
       ],
