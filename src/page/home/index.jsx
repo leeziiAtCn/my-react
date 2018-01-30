@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
+import { Button } from 'antd-mobile'
 
 export default class Home extends Component {
-  constructor (props) {
-    super(props)
+  constructor () {
+    super()
     this.state = {}
   }
 
   render () {
     return (
       <div>
-        i an home
+        <Button type='primary'>1</Button>
       </div>
     )
   }

@@ -1,6 +1,5 @@
 const autoprefixer = require('autoprefixer')
 const pxtorem = require('postcss-pxtorem')
-const theme = require('../package.json').theme
 module.exports = {
   ident: 'postcss',
   plugins: [

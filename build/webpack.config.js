@@ -9,6 +9,8 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const cssOpts = require('./css.config')
 const CUR_ENV = require('./env')[process.env.NODE_ENV]
 const isBundle = CUR_ENV.env === 'production'
+const theme = require('../package.json').theme
+
 process.noDeprecation = true
 //
 const config = {
@@ -35,7 +37,6 @@ const config = {
             {
               loader: 'css-loader',
               options: {
-                modules:true,
                 minimize: true
               }
             },
@@ -43,13 +44,12 @@ const config = {
               loader: 'postcss-loader',
               options: cssOpts
             },
-            'less-loader?modules'
+            {
+              loader: 'less-loader',
+              options: {modifyVars: theme}
+            }
           ]
         })
-      },
-      {
-        test: /\.css$/,
-        loader: "style-loader!css-loader?modules"
       }
     ]
   },
@@ -62,7 +62,7 @@ const config = {
       'layout': path.join(__dirname, '../src/layout'),
       'page': path.join(__dirname, '../src/page')
     },
-    extensions: ['.js', '.jsx']
+    extensions: ['.jsx', '.js']
   },
   devServer: {
     historyApiFallback: true,
