@@ -18,7 +18,7 @@ const Layout = () => (
         <Switch>
           <Redirect exact path='/' to='/home'/>
           <Route path='/home' component={Home}/>
-          {/*<Route path='/wallet' component={Wallet}/>*/}
+          <Route path='/wallet' component={Wallet}/>
           <Route path='/mine' component={Mine}/>
           <Redirect to='/not-find'/>
         </Switch>

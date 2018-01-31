@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { TabBar } from 'antd-mobile'
 import style from './index.less'
-
-export default class AppHeaderTabBar extends Component {
+import {withRouter} from 'react-router-dom'
+ class AppHeaderTabBar extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -40,7 +40,6 @@ export default class AppHeaderTabBar extends Component {
     this.setState({
       selectedTab: path
     })
-    console.log(this.props.history)
    this.props.history.push(path)
   }
 
@@ -69,3 +68,4 @@ export default class AppHeaderTabBar extends Component {
     )
   }
 }
+export default withRouter(AppHeaderTabBar)

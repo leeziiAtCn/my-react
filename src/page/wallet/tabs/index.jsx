@@ -25,7 +25,7 @@ export default class WalletTabs extends Component {
   }
 
   tabChange ({path}, index) {
-    window.location.replace(path)
+    this.props.history(path)
   }
 
   render () {

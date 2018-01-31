@@ -2,10 +2,9 @@ const express = require('express')
 const path = require('path')
 const proxy = require('http-proxy-middleware')
 const compression = require('compression')
-const react = require('react')
 const history = require('connect-history-api-fallback');
 let app = express()
-// app.use(history())
+app.use(history())
 app.use(compression())
 app.use(express.static(path.join(__dirname, './dist')))
 app.use('*', proxy({

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-//import HomeCarousel from './carousel'
+import HomeCarousel from './carousel'
  class Home extends Component {
   constructor () {
     super()
@@ -9,7 +9,7 @@ import React, { Component } from 'react'
   render () {
     return (
       <div>
-        home1
+        <HomeCarousel/>
       </div>
     )
   }

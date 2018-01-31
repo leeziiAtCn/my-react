@@ -20,9 +20,11 @@ export default class HomeCarousel extends Component {
         infinite
         selectedIndex={1}
       >
-        {this.state.data.map(val => (
-          <div className={style.img} key={val} style={{backgroundImage: `url(${val})`}} />
-        ))}
+        {
+          this.state.data.map(val =>
+            <div className={style.img} key={val} style={{backgroundImage: `url(${val})`}}/>
+          )
+        }
       </Carousel>
     )
   }
