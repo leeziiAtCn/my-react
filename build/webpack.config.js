@@ -10,9 +10,10 @@ const cssOpts = require('./css.config')
 const CUR_ENV = require('./env')[process.env.NODE_ENV]
 const isBundle = CUR_ENV.env === 'production'
 const theme = require('../package.json').theme
-
+// css
+const baseExtractCss = new ExtractTextPlugin('style/base.[hash:6].css')
+const antdExtractCss = new ExtractTextPlugin('style/antd.[hash:6].css')
 process.noDeprecation = true
-//
 const config = {
   entry: {
     main: './src/main.jsx'
@@ -26,16 +27,30 @@ const config = {
     rules: [
       {
         test: /\.jsx$/,
-        exclude: /node_modules/,
         loader: 'babel-loader'
       },
       {
-        test:/\.css$/,
-        loader: 'css-loader'
+        test: /\.css$/,
+        use: baseExtractCss.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: cssOpts
+            }
+          ]
+        })
       },
       {
         test: /\.less$/,
-        use: ExtractTextPlugin.extract({
+        include: /node_modules/,
+        use: antdExtractCss.extract({
           fallback: 'style-loader',
           use: [
             {
@@ -54,7 +69,32 @@ const config = {
             }
           ]
         })
+      },
+      {
+        test: /\.less$/,
+        include: /src/,
+        use: baseExtractCss.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true,
+                modules: true,
+                localIdentName: '[path]-[name]-[hash:base64:5]'
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: cssOpts
+            },
+            {
+              loader: 'less-loader'
+            }
+          ]
+        })
       }
+
     ]
   },
   devtool: isBundle ? false : '#cheap-module-eval-source-map',
@@ -76,17 +116,18 @@ const config = {
     host: utils.getIp(),
     port: 8082,
     disableHostCheck: true,
-    proxy: {
-      '*': {
-        target: 'http://hgbl.dianpiao360.com/',
-        // target: 'http://hgbl.dianpiao360.com/',
-        changeOrigin: true,
-        secure: false
-      }
-    }
+    // proxy: {
+    //   'api/*': {
+    //     target: 'http://hgbl.dianpiao360.com/',
+    //     // target: 'http://hgbl.dianpiao360.com/',
+    //     changeOrigin: true,
+    //     secure: false
+    //   }
+    // }
   },
   plugins: [
-    new ExtractTextPlugin('style/styles.css'),
+    antdExtractCss,
+    baseExtractCss,
     new HtmlWebpackPlugin({
       favicon: './src/static/favicon.ico',
       filename: 'index.html',
@@ -126,10 +167,6 @@ if (isBundle) {
     }),
     new HtmlWebpackIncludeAssetsPlugin({
       assets: [
-        {
-          path: '//at.alicdn.com/t/font_501872_3zug8utz5a7wg66r.css',
-          type: 'css'
-        },
         {
           path: '//cdn.bootcss.com/react/16.2.0/umd/react.production.min.js',
           type: 'js'

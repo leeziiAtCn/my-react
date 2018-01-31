@@ -1,34 +1,30 @@
 import React from 'react'
-import styled from 'styled-components'
-import { HashRouter, Switch, Route, Link, Redirect } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import AppHeader from 'layout/header'
 import TabBar from 'layout/tab-bar'
 import Home from 'page/home'
 import Mine from 'page/mine'
-import Wallet from  'page/wallet'
-const App = styled.div`
-display: flex;
-flex-direction: column;
-height: 100vh;
-`
-const AppMain = styled.div`
-flex: 1;
-`
+import Wallet from 'page/wallet'
+import style from './index.less'
+import { Flex } from 'antd-mobile'
+import createHistory from 'history/createBrowserHistory'
+
+const history = createHistory()
 const Layout = () => (
-  <HashRouter>
-    <App>
+  <BrowserRouter>
+    <Flex className={style.app} direction='column'>
       <AppHeader/>
-      <AppMain>
+      <Flex.Item className={style.main}>
         <Switch>
-          <Redirect exact path='/' to="/home"/>
+          <Redirect exact path='/' to='/home'/>
           <Route path='/home' component={Home}/>
-          <Route path='/wallet' component={Wallet}/>
+          {/*<Route path='/wallet' component={Wallet}/>*/}
           <Route path='/mine' component={Mine}/>
-          <Redirect to="/not-find"/>
+          <Redirect to='/not-find'/>
         </Switch>
-      </AppMain>
+      </Flex.Item>
       <TabBar/>
-    </App>
-  </HashRouter>
+    </Flex>
+  </BrowserRouter>
 )
 export default Layout

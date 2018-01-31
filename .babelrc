@@ -18,7 +18,18 @@
   ],
   "plugins": [
     "transform-runtime",
-    ["import", { "libraryName": "antd-mobile",  "style":true }],
-    ["transform-class-properties", { "spec": true }]
+    [
+      "import",
+      {
+        "libraryName": "antd-mobile",
+        "style": true
+      }
+    ],
+    [
+      "transform-class-properties",
+      {
+        "spec": true
+      }
+    ]
   ]
 }

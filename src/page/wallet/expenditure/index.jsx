@@ -8,9 +8,7 @@ export default class Expenditure extends Component {
 
   render () {
     return (
-      <div>
-
-      </div>
+      <div />
     )
   }
 }

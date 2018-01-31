@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 
-export default class Mine extends Component {
+class Mine extends Component {
   render () {
     return (
       <div>
-        <span className='text'>Mines</span>
+        mine
       </div>
     )
   }
 }
+
+export default Mine

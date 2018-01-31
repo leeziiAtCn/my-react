@@ -1,25 +1,19 @@
 import React, { Component } from 'react'
-import {NavBar,Icon} from 'antd-mobile'
-import styled from 'styled-components'
-import './index.less'
-const Header = styled(NavBar)`
+import { NavBar, Icon } from 'antd-mobile'
+import style from './index.less'
 
-`
 export default class AppHeader extends Component {
-  constructor (props) {
-    super(props)
-  }
-
   render () {
     return (
-      <Header
-        mode="light"
-        icon={<Icon type="left" />}
+      <NavBar
+        className={style.header}
+        mode='light'
+        icon={<Icon type='left' />}
         onLeftClick={() => console.log('onLeftClick')}
         rightContent={[
-          <Icon key="1" type="ellipsis" />,
+          <Icon key='1' type='ellipsis' />
         ]}
-      >NavBar</Header>
+        >NavBar</NavBar>
     )
   }
 }

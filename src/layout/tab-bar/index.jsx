@@ -1,30 +1,19 @@
 import React, { Component } from 'react'
 import { TabBar } from 'antd-mobile'
-
-import styled from 'styled-components'
-
-const AppTabBar = styled(TabBar)`
-
-`
-const AppTabBarItem = styled(TabBar.Item)`
-
-`
-const TabIcon = styled.div`
-font-size: .4rem;
-`
+import style from './index.less'
 
 export default class AppHeaderTabBar extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
-      selectedTab: '#/home',
+      selectedTab: '/home',
       tabs: [
         {
           text: '主页',
           icon: 'icon-homepage',
           activeIcon: 'icon-homepage_fill',
           activeColor: '',
-          path: '#/home',
+          path: '/home',
           active: true
         },
         {
@@ -32,7 +21,7 @@ export default class AppHeaderTabBar extends Component {
           icon: 'icon-coupons',
           activeIcon: 'icon-coupons_fill',
           activeColor: '',
-          path: '#/wallet/income',
+          path: '/wallet/income',
           active: false
         },
         {
@@ -40,41 +29,43 @@ export default class AppHeaderTabBar extends Component {
           icon: 'icon-people',
           activeIcon: 'icon-people_fill',
           activeColor: '',
-          path: '#/mine',
+          path: '/mine',
           active: false
         }
       ]
     }
   }
 
-  changeTab = ({path}, index) => {
+  changeTab ({ path }, index) {
     this.setState({
-      selectedTab:path
+      selectedTab: path
     })
-    // window.location.replace(path)
+    console.log(this.props.history)
+   this.props.history.push(path)
   }
 
   render () {
     return (
-      <AppTabBar
-        unselectedTintColor="#949494"
-        tintColor="#33A3F4"
-        barTintColor="white"
-      >
-        {
-          this.state.tabs.map((tab,index) => (
-            <AppTabBarItem
-              title={tab.text}
-              key={tab.path}
-              icon={<TabIcon className={'iconfont ' + tab.icon}/>}
-              selectedIcon={<TabIcon className={'iconfont ' + tab.activeIcon}/>}
-              selected={this.state.selectedTab === tab.path}
-              onPress={this.changeTab.bind(this,tab,index)}
-            />
-          ))
-        }
-
-      </AppTabBar>
+      <div className={style.footer}>
+        <TabBar
+          unselectedTintColor='#949494'
+          tintColor='#33A3F4'
+          barTintColor='white'
+        >
+          {
+            this.state.tabs.map((tab, index) => (
+              <TabBar.Item
+                title={tab.text}
+                key={tab.path}
+                icon={<div className={`${style.iconfont} iconfont ${tab.icon}`} />}
+                selectedIcon={<div className={`${style.iconfont} iconfont ${tab.activeIcon}`} />}
+                selected={this.state.selectedTab === tab.path}
+                onPress={this.changeTab.bind(this, tab, index)}
+              />
+            ))
+          }
+        </TabBar>
+      </div>
     )
   }
 }
