@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { Router, Switch, Route, Redirect } from 'react-router-dom'
 import AppHeader from 'layout/header'
 import TabBar from 'layout/tab-bar'
 import Home from 'page/home'
@@ -7,11 +7,9 @@ import Mine from 'page/mine'
 import Wallet from 'page/wallet'
 import style from './index.less'
 import { Flex } from 'antd-mobile'
-import createHistory from 'history/createBrowserHistory'
-
-const history = createHistory()
+import history from 'src/history'
 const Layout = () => (
-  <BrowserRouter>
+  <Router history={history}>
     <Flex className={style.app} direction='column'>
       <AppHeader/>
       <Flex.Item className={style.main}>
@@ -25,6 +23,6 @@ const Layout = () => (
       </Flex.Item>
       <TabBar/>
     </Flex>
-  </BrowserRouter>
+  </Router>
 )
 export default Layout

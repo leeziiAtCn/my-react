@@ -8,7 +8,7 @@ export default class Expenditure extends Component {
 
   render () {
     return (
-      <div />
+      <div>支出</div>
     )
   }
 }

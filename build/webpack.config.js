@@ -104,7 +104,8 @@ const config = {
       'react-dom': `react-dom/umd/react-dom.development.js`,
       'react-router-dom': 'react-router-dom/umd/react-router-dom.min.js',
       'layout': path.join(__dirname, '../src/layout'),
-      'page': path.join(__dirname, '../src/page')
+      'page': path.join(__dirname, '../src/page'),
+      'src': path.join(__dirname, '../src')
     },
     extensions: ['.jsx', '.js']
   },

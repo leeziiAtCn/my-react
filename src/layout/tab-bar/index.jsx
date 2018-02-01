@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { TabBar } from 'antd-mobile'
 import style from './index.less'
-import {withRouter} from 'react-router-dom'
- class AppHeaderTabBar extends Component {
+import { withRouter } from 'react-router-dom'
+import history from 'src/history'
+
+class AppHeaderTabBar extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      selectedTab: '/home',
+      selectedTab: '',
       tabs: [
         {
           text: '主页',
@@ -21,7 +23,7 @@ import {withRouter} from 'react-router-dom'
           icon: 'icon-coupons',
           activeIcon: 'icon-coupons_fill',
           activeColor: '',
-          path: '/wallet/income',
+          path: '/wallet',
           active: false
         },
         {
@@ -36,11 +38,18 @@ import {withRouter} from 'react-router-dom'
     }
   }
 
-  changeTab ({ path }, index) {
+  componentWillMount () {
+    console.log('/' + history.location.pathname.split('/')[1])
+    this.setState({
+      selectedTab: '/' + history.location.pathname.split('/')[1]
+    })
+  }
+
+  changeTab ({path}, index) {
     this.setState({
       selectedTab: path
     })
-   this.props.history.push(path)
+    this.props.history.push(path)
   }
 
   render () {
@@ -56,8 +65,8 @@ import {withRouter} from 'react-router-dom'
               <TabBar.Item
                 title={tab.text}
                 key={tab.path}
-                icon={<div className={`${style.iconfont} iconfont ${tab.icon}`} />}
-                selectedIcon={<div className={`${style.iconfont} iconfont ${tab.activeIcon}`} />}
+                icon={<div className={`${style.iconfont} iconfont ${tab.icon}`}/>}
+                selectedIcon={<div className={`${style.iconfont} iconfont ${tab.activeIcon}`}/>}
                 selected={this.state.selectedTab === tab.path}
                 onPress={this.changeTab.bind(this, tab, index)}
               />
@@ -68,4 +77,5 @@ import {withRouter} from 'react-router-dom'
     )
   }
 }
+
 export default withRouter(AppHeaderTabBar)

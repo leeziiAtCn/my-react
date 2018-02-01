@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Tabs, WhiteSpace } from 'antd-mobile'
 import { StickyContainer, Sticky } from 'react-sticky'
+import history from 'src/history'
 
 const StickyBar = (props) => (
   <Sticky>
@@ -14,18 +15,18 @@ export default class WalletTabs extends Component {
       tabs: [
         {
           title: '收入',
-          path:'./income'
+          path: './income'
         },
         {
           title: '支出',
-          path:'./expenditure'
+          path: './expenditure'
         }
       ]
     }
   }
 
   tabChange ({path}, index) {
-    this.props.history(path)
+    history.push(path)
   }
 
   render () {

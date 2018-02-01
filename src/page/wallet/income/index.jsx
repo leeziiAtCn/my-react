@@ -5,45 +5,74 @@ export default class Income extends Component {
     super(props)
     this.state = {
       tabs: [
-        { title: 'First Tab' },
-        { title: 'Second Tab' }
+        {title: 'First Tab'},
+        {title: 'Second Tab'}
       ]
     }
+  }
+
+  componentWillMount () {
+    fetch('http://127.0.0.1:7001/', {
+      method: 'GET'
+    }).then(res => {
+      console.log(res)
+    })
   }
 
   render () {
     return (
       <div>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p> <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>   <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p> <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
-        <p>income</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>  <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>  <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>  <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>  <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
+        <p>收入</p>
       </div>
     )
   }
