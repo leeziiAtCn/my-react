@@ -12,11 +12,7 @@ export default class Income extends Component {
   }
 
   componentWillMount () {
-    fetch('http://127.0.0.1:7001/', {
-      method: 'GET'
-    }).then(res => {
-      console.log(res)
-    })
+
   }
 
   render () {

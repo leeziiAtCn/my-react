@@ -9,32 +9,6 @@ class AppHeaderTabBar extends Component {
     super(props)
     this.state = {
       selectedTab: '',
-      tabs: [
-        {
-          text: '主页',
-          icon: 'icon-homepage',
-          activeIcon: 'icon-homepage_fill',
-          activeColor: '',
-          path: '/home',
-          active: true
-        },
-        {
-          text: '钱包',
-          icon: 'icon-coupons',
-          activeIcon: 'icon-coupons_fill',
-          activeColor: '',
-          path: '/wallet',
-          active: false
-        },
-        {
-          text: '我的',
-          icon: 'icon-people',
-          activeIcon: 'icon-people_fill',
-          activeColor: '',
-          path: '/mine',
-          active: false
-        }
-      ]
     }
   }
 
@@ -48,6 +22,7 @@ class AppHeaderTabBar extends Component {
     this.setState({
       selectedTab: path
     })
+    console.log(path)
     this.props.history.push(path)
   }
 
