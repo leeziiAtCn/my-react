@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { observer, inject } from 'mobx-react'
+import M1 from './m1'
+import M2 from './m2'
 
-class Mine extends Component {
+@inject('user')
+@observer
+export default class Mine extends Component {
   render () {
+    const {store} = this.props
     return (
       <div>
-        mine
+        div
+        <M1/>
+        <M2/>
+        <span onClick={this.props.user.fun}>button</span>
       </div>
     )
   }
 }
-
-export default Mine

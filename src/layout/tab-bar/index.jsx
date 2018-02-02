@@ -39,7 +39,6 @@ class AppHeaderTabBar extends Component {
   }
 
   componentWillMount () {
-    console.log('/' + history.location.pathname.split('/')[1])
     this.setState({
       selectedTab: '/' + history.location.pathname.split('/')[1]
     })
@@ -53,6 +52,33 @@ class AppHeaderTabBar extends Component {
   }
 
   render () {
+    const tabs = [
+      {
+        text: '主页',
+        icon: 'icon-homepage',
+        activeIcon: 'icon-homepage_fill',
+        activeColor: '',
+        path: '/home',
+        active: true
+      },
+      {
+        text: '钱包',
+        icon: 'icon-coupons',
+        activeIcon: 'icon-coupons_fill',
+        activeColor: '',
+        path: '/wallet',
+        active: false
+      },
+      {
+        text: '我的',
+        icon: 'icon-people',
+        activeIcon: 'icon-people_fill',
+        activeColor: '',
+        path: '/mine',
+        active: false
+      }
+    ]
+
     return (
       <div className={style.footer}>
         <TabBar
@@ -61,7 +87,7 @@ class AppHeaderTabBar extends Component {
           barTintColor='white'
         >
           {
-            this.state.tabs.map((tab, index) => (
+            tabs.map((tab, index) => (
               <TabBar.Item
                 title={tab.text}
                 key={tab.path}
