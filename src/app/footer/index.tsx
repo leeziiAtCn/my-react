@@ -1,24 +1,15 @@
 import * as React from 'react'
 import styles from './index.less'
-import { TabBar } from 'antd-mobile'
-import { withRouter } from 'react-router-dom'
+import {TabBar} from 'antd-mobile'
+import {withRouter} from 'react-router-dom'
+import {inject, observer} from 'mobx-react'
 
+@inject('app')
+@observer
 class Footer extends React.Component<any, any> {
-  constructor (props: any) {
-    super(props)
-    this.state = {
-      selectedTab: '/home'
-    }
-  }
 
-  changeTabs =(path: string, index: number)=> {
-    this.setState({
-      selectedTab: path
-    })
-    this.props.history.push(path)
-  }
-
-  render () {
+  render() {
+    const {assets} = this.props.app
     const tabs = [
       {
         text: '主页',
@@ -26,7 +17,7 @@ class Footer extends React.Component<any, any> {
         activeIcon: 'icon-shouye',
         activeColor: '',
         path: '/home',
-        active: true
+        active: true,
       },
       {
         text: '交易',
@@ -34,7 +25,7 @@ class Footer extends React.Component<any, any> {
         activeIcon: 'icon-jiaoyi',
         activeColor: '',
         path: '/trans',
-        active: false
+        active: false,
       },
       {
         text: '票源',
@@ -42,7 +33,7 @@ class Footer extends React.Component<any, any> {
         activeIcon: 'icon-piaoyuan',
         activeColor: '',
         path: '/bill',
-        active: false
+        active: false,
       },
       {
         text: '我的',
@@ -50,31 +41,35 @@ class Footer extends React.Component<any, any> {
         activeIcon: 'icon-zhanghu',
         activeColor: '',
         path: '/mine',
-        active: false
-      }
+        active: false,
+      },
     ]
     return (
-      <div className={styles.footer}>
-        <TabBar
-          unselectedTintColor='#949494'
-          tintColor='#ff6701'
-          barTintColor='white'
-        >
-          {
-            tabs.map((tab, index) => (
-              <TabBar.Item
-                title={tab.text}
-                key={tab.path}
-                icon={<div className={`${styles.iconfont} iconfont ${tab.icon}`}/>}
-                selectedIcon={<div className={`${styles.iconfont} iconfont ${tab.activeIcon}`}/>}
-                selected={this.state.selectedTab === tab.path}
-                 onPress={this.changeTabs.bind(this, tab.path, index)}
-              />
-            ))
-          }
-        </TabBar>
-      </div>
+        <div className={styles.footer}>
+          <TabBar
+              unselectedTintColor='#949494'
+              tintColor='#ff6701'
+              barTintColor='white'
+              hidden={assets.hiddenTab}
+          >
+            {
+              tabs.map((tab, index) => (
+                  <TabBar.Item
+                      title={tab.text}
+                      key={tab.path}
+                      icon={<div
+                          className={`${styles.iconfont} iconfont ${tab.icon}`}/>}
+                      selectedIcon={<div
+                          className={`${styles.iconfont} iconfont ${tab.activeIcon}`}/>}
+                      selected={assets.currentPath === tab.path}
+                      onPress={assets.changePath.bind(assets, this.props,tab.path)}
+                  />
+              ))
+            }
+          </TabBar>
+        </div>
     )
   }
 }
+
 export default withRouter(Footer)

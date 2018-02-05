@@ -1,15 +1,17 @@
 import * as React from 'react'
-export default class Mine extends React.Component {
-  componentWillMount(){
-    console.log(1)
+import {observer, inject} from 'mobx-react'
+import {Button} from 'antd-mobile'
 
-  }
-  componentWillUnmount(){
-    console.log(2)
-  }
-  render(){
+@inject('user')
+@observer
+export default class Mine extends React.Component<any, any> {
+  render() {
+    const {auth} = this.props.user
     return (
-      <div>mine</div>
+        <Button
+            onClick={auth.login.bind(auth, 'username', 'password')}>
+          login
+        </Button>
     )
   }
 }
