@@ -1,6 +1,7 @@
 const path = require('path')
-const utils = require('./utils')
+const utils = require('./util')
 const webpack = require('webpack')
+const tsImportPluginFactory = require('ts-import-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -16,7 +17,7 @@ const antdExtractCss = new ExtractTextPlugin('style/antd.[hash:6].css')
 process.noDeprecation = true
 const config = {
   entry: {
-    main: './src/main.jsx'
+    main: './src/main.tsx'
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -26,9 +27,14 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.jsx$|\.js$/,
-        exclude:/node_modules/,
-        loader: 'babel-loader'
+        test: /\.tsx$/,
+        exclude: /node_modules/,
+        loader: 'ts-loader',
+        options: {
+          getCustomTransformers: () => ({
+            before: [tsImportPluginFactory({libraryName: 'antd-mobile',libraryDirectory: 'es', style: true})]
+          })
+        }
       },
       {
         test: /\.css$/,
@@ -78,11 +84,13 @@ const config = {
           fallback: 'style-loader',
           use: [
             {
-              loader: 'css-loader',
+              loader: 'typings-for-css-modules-loader',
               options: {
-                minimize: true,
                 modules: true,
-                localIdentName: '[path]-[name]-[hash:base64:5]'
+                namedExport: true,
+                camelCase: true,
+                minimize: true,
+                localIdentName: "[local]_[hash:base64:5]"
               }
             },
             {
@@ -108,7 +116,7 @@ const config = {
       'page': path.join(__dirname, '../src/page'),
       'src': path.join(__dirname, '../src')
     },
-    extensions: ['.jsx', '.js']
+    extensions: ['.tsx', '.ts','.js']
   },
   devServer: {
     historyApiFallback: true,
@@ -118,14 +126,14 @@ const config = {
     host: utils.getIp(),
     port: 8082,
     disableHostCheck: true,
-    // proxy: {
-    //   'api/*': {
-    //     target: 'http://hgbl.dianpiao360.com/',
-    //     // target: 'http://hgbl.dianpiao360.com/',
-    //     changeOrigin: true,
-    //     secure: false
-    //   }
-    // }
+    proxy: {
+      'api/*': {
+        target: 'http://hgbl.dianpiao360.com/',
+        // target: 'http://hgbl.dianpiao360.com/',
+        changeOrigin: true,
+        secure: false
+      }
+    }
   },
   plugins: [
     antdExtractCss,
@@ -137,7 +145,8 @@ const config = {
       inject: true,
       minify: {
         removeComments: true,
-        collapseWhitespace: true
+        collapseWhitespace: true,
+        minifyJS:true
       }
     }),
     new webpack.DefinePlugin({
@@ -146,7 +155,7 @@ const config = {
     new HtmlWebpackIncludeAssetsPlugin({
       assets: [
         {
-          path: '//at.alicdn.com/t/font_559336_r1h392rwr8oj38fr.css',
+          path: '//at.alicdn.com/t/font_501872_nb7onvvz0tokzkt9.css',
           type: 'css'
         }
       ],
@@ -180,6 +189,10 @@ if (isBundle) {
         {
           path: '//cdn.bootcss.com/react-router-dom/4.2.2/react-router-dom.min.js',
           type: 'js'
+        },
+        {
+          path: '//cdn.bootcss.com/mobx/3.4.1/mobx.umd.min.js',
+          type: 'js'
         }
       ],
       append: false,
@@ -189,7 +202,8 @@ if (isBundle) {
   config.externals = {
     'react': 'React',
     'react-dom': 'ReactDOM',
-    'react-router-dom': 'ReactRouterDOM'
+    'react-router-dom': 'ReactRouterDOM',
+    'mobx': 'mobx'
   }
 }
 module.exports = config
