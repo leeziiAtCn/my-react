@@ -17,14 +17,16 @@ export default class InterceptRoute extends React.Component<any, any> {
   }
 
   init() {
+    const {assets} = this.props.app
     //path
     let path = this.props.location.pathname
-    this.props.app.assets.setPath(path)
+    assets.setPath(path)
     //title
     const {meta} = this.props
-    this.props.app.assets.changeTitle(meta.title)
+    assets.changeTitle(meta.title)
     //footer
-
+    meta.hiddenTab = meta.hiddenTab || false
+    assets.setTab(meta.hiddenTab)
   }
 
   render() {

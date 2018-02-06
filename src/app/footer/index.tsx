@@ -10,6 +10,7 @@ class Footer extends React.Component<any, any> {
 
   render() {
     const {assets} = this.props.app
+    console.log(assets)
     const tabs = [
       {
         text: '主页',
@@ -45,12 +46,11 @@ class Footer extends React.Component<any, any> {
       },
     ]
     return (
-        <div className={styles.footer}>
+        <div className={styles.footer} hidden={assets.hiddenTab}>
           <TabBar
               unselectedTintColor='#949494'
-              tintColor='#ff6701'
+              tintColor={assets.color}
               barTintColor='white'
-              hidden={assets.hiddenTab}
           >
             {
               tabs.map((tab, index) => (
@@ -62,7 +62,8 @@ class Footer extends React.Component<any, any> {
                       selectedIcon={<div
                           className={`${styles.iconfont} iconfont ${tab.activeIcon}`}/>}
                       selected={assets.currentPath === tab.path}
-                      onPress={assets.changePath.bind(assets, this.props,tab.path)}
+                      onPress={assets.changePath.bind(assets, this.props,
+                          tab.path)}
                   />
               ))
             }

@@ -9,6 +9,8 @@ import Home from '../page/home'
 import Mine from '../page/mine'
 import Trans from '../page/trans'
 import Bill from '../page/bill'
+import Login from '../page/login'
+import Test from '../page/test'
 //antd
 import {Flex} from 'antd-mobile'
 import InterceptRoute from '../interceptRoute'
@@ -17,11 +19,6 @@ import {inject, observer} from 'mobx-react'
 @inject('app')
 @observer
 class App extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props)
-  }
-
-
   render() {
     return (
         <Flex direction='column' align='start' className={styles.app}>
@@ -30,13 +27,17 @@ class App extends React.Component<any, any> {
             <Switch>
               <Redirect exact path='/' to='/home'/>
               <InterceptRoute exact path='/home' component={Home}
-                              meta={{title: '主页', hiddenTab: true}}/>
+                              meta={{title: '主页'}}/>
               <InterceptRoute exact path='/trans' component={Trans}
                               meta={{title: '交易'}}/>
               <InterceptRoute exact path='/bill' component={Bill}
                               meta={{title: '票源'}}/>
               <InterceptRoute exact path='/mine' component={Mine}
                               meta={{title: '我的'}}/>
+              <InterceptRoute exact path='/login' component={Login}
+                              meta={{title: '登录', hiddenTab: true}}/>
+              <InterceptRoute exact path='/test' component={Test}
+                              meta={{title: '测试页面'}}/>
               <Redirect to='/not-find'/>
             </Switch>
           </Flex.Item>

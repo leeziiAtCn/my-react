@@ -10,15 +10,15 @@ class Header extends React.Component<any, any> {
   render() {
     const {assets} = this.props.app
     return (
-        <NavBar
-            className={styles.header}
-            mode="dark"
-            onLeftClick={assets.historyBack.bind(assets, this.props.history)}
-            icon={<Icon type='left'/>}
-        >{assets.title}</NavBar>
+        <div className={styles.header} style={{background: assets.color}}>
+          <NavBar
+              className={styles.tab}
+              onLeftClick={assets.historyBack.bind(assets, this.props.history)}
+              icon={<Icon type='left'/>}
+          >{assets.title} </NavBar>
+        </div>
     )
   }
 }
-
 
 export default withRouter(Header)

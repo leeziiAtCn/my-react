@@ -1,6 +1,6 @@
-import search from './search'
 import auth from './auth'
+import login from './login'
 export const user = {
-  search,
-  auth
+  auth,
+  login
 }
