@@ -8,12 +8,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="@types/angular" level="application" />
     <orderEntry type="library" name="@types/jquery" level="application" />
     <orderEntry type="library" name="@types/react-router" level="application" />
-    <orderEntry type="library" name="@types/react-router-dom" level="application" />
     <orderEntry type="library" name="@types/koa" level="application" />
     <orderEntry type="library" name="@types/express" level="application" />
-    <orderEntry type="library" name="@types/history" level="application" />
   </component>
 </module>

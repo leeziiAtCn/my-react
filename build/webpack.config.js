@@ -155,7 +155,7 @@ const config = {
     new HtmlWebpackIncludeAssetsPlugin({
       assets: [
         {
-          path: '//at.alicdn.com/t/font_501872_nb7onvvz0tokzkt9.css',
+          path: '//at.alicdn.com/t/font_501872_5ryzekpphmewxw29.css',
           type: 'css'
         }
       ],

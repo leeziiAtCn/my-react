@@ -4,7 +4,7 @@ import App from './app'
 import {BrowserRouter} from 'react-router-dom'
 import {stores} from './store'
 import {Provider} from 'mobx-react'
-
+import './static/less/base.less'
 ReactDom.render((
     <Provider {...stores}>
       <BrowserRouter>
