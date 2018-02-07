@@ -11,14 +11,19 @@
     "hd": "2px"
   },
   "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/md5": "^2.1.32",
     "antd-mobile": "^2.1.5",
+    "axios": "^0.17.1",
+    "md5": "^2.2.1",
     "mobx": "^3.4.1",
     "mobx-react": "^4.3.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-sticky": "^6.0.1"
+    "react-sticky": "^6.0.1",
+    "ts-md5": "^1.2.4"
   },
   "devDependencies": {
     "@types/react": "^16.0.36",
@@ -41,10 +46,10 @@
     "ts-import-plugin": "^1.4.3",
     "ts-loader": "^3.4.0",
     "typescript": "^2.7.1",
+    "typings-for-css-modules-loader": "^1.7.0",
     "url-loader": "^0.6.2",
     "webpack": "^3.8.1",
     "webpack-bundle-analyzer": "^2.9.1",
-    "webpack-dev-server": "^2.11.1",
-    "typings-for-css-modules-loader": "^1.7.0"
+    "webpack-dev-server": "^2.11.1"
   }
 }
