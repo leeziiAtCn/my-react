@@ -7,13 +7,10 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config=./build/webpack.config.js  --open  --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=./build/webpack.config.js"
   },
-  "theme": {
-    "hd": "2px"
-  },
   "dependencies": {
     "@types/axios": "^0.14.0",
     "@types/md5": "^2.1.32",
-    "antd-mobile": "^2.1.5",
+    "antd": "^3.2.3",
     "axios": "^0.17.1",
     "md5": "^2.2.1",
     "mobx": "^3.4.1",
@@ -22,7 +19,7 @@
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-sticky": "^6.0.1",
+    "styled-components": "^3.2.0",
     "ts-md5": "^1.2.4"
   },
   "devDependencies": {

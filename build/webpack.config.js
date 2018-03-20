@@ -7,7 +7,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const cssOpts = require('./css.config')
 const CUR_ENV = require('./env')[process.env.NODE_ENV]
 const isBundle = CUR_ENV.env === 'production'
 const theme = require('../package.json').theme
@@ -32,31 +31,12 @@ const config = {
         loader: 'ts-loader',
         options: {
           getCustomTransformers: () => ({
-            before: [tsImportPluginFactory({libraryName: 'antd-mobile',libraryDirectory: 'es', style: true})]
+            before: [tsImportPluginFactory({libraryName: 'antd',libraryDirectory: 'es', style: true})]
           })
         }
       },
       {
-        test: /\.css$/,
-        use: baseExtractCss.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: true
-              }
-            },
-            {
-              loader: 'postcss-loader',
-              options: cssOpts
-            }
-          ]
-        })
-      },
-      {
         test: /\.less$/,
-        include: /node_modules/,
         use: antdExtractCss.extract({
           fallback: 'style-loader',
           use: [
@@ -67,43 +47,11 @@ const config = {
               }
             },
             {
-              loader: 'postcss-loader',
-              options: cssOpts
-            },
-            {
-              loader: 'less-loader',
-              options: {modifyVars: theme}
-            }
-          ]
-        })
-      },
-      {
-        test: /\.less$/,
-        include: /src/,
-        use: baseExtractCss.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'typings-for-css-modules-loader',
-              options: {
-                modules: true,
-                namedExport: true,
-                camelCase: true,
-                minimize: true,
-                localIdentName: "[local]_[hash:base64:5]"
-              }
-            },
-            {
-              loader: 'postcss-loader',
-              options: cssOpts
-            },
-            {
               loader: 'less-loader'
             }
           ]
         })
-      }
-
+      },
     ]
   },
   devtool: isBundle ? false : '#cheap-module-eval-source-map',

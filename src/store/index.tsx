@@ -1,9 +1,7 @@
-import {unit} from './unit'
-import {user} from './user'
 import {app} from './app'
+import {home} from './home'
 
 export const stores = {
   app,
-  unit,
-  user,
+  home,
 }
