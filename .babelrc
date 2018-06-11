@@ -13,24 +13,9 @@
         }
       }
     ],
-    "stage-0",
     "react"
   ],
   "plugins": [
-    "transform-decorators-legacy",
-//    [
-//      "transform-class-properties",
-//      {
-//        "spec": true
-//      }
-//    ],
-    "transform-runtime",
-    [
-      "import",
-      {
-        "libraryName": "antd-mobile",
-        "style": true
-      }
-    ]
+    "transform-runtime"
   ]
 }

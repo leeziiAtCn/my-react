@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/my-react.iml" filepath="$PROJECT_DIR$/.idea/my-react.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/wallet-fe.iml" filepath="$PROJECT_DIR$/.idea/wallet-fe.iml" />
     </modules>
   </component>
 </project>
