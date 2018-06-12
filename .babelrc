@@ -11,9 +11,10 @@
             "not ie <= 10"
           ]
         }
-      }
+      },
     ],
-    "react"
+    "react",
+    "stage-0"
   ],
   "plugins": [
     "transform-runtime"

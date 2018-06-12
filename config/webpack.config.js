@@ -46,7 +46,7 @@ let baseConfig = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[name]-[hash:4]'
+              localIdentName: '[local]-[hash:4]'
             }
           },
           {
@@ -91,5 +91,4 @@ let baseConfig = {
   ]
 
 }
-const config = merge(baseConfig, envConfig)
-module.exports = config
+module.exports = merge(baseConfig, envConfig)

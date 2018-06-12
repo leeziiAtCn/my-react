@@ -20,4 +20,4 @@ this template had lint your commit info
 * `test`：add test case or update test case
 * `revert`：revert commit
 * `chore`：not ⬆️
-example git commit -m "fix: fix login type and user info display type"
+*  example git commit -m "fix: fix login type and user info display type"
