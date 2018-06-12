@@ -41,13 +41,13 @@ module.exports = {
         parallel: true,
         sourceMap: true
       }),
-      new OptimizeCSSAssetsPlugin({})  // use OptimizeCSSAssetsPlugin
+      new OptimizeCSSAssetsPlugin({})
     ]
   },
-  externals : {
+  externals: {
     'react': 'React',
     'react-dom': 'ReactDOM',
-    'react-router-dom': 'ReactRouterDOM',
+    'react-router-dom': 'ReactRouterDOM'
     // 'react-router': 'ReactRouter',
   }
 }

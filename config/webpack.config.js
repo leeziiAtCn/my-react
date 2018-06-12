@@ -24,6 +24,18 @@ let baseConfig = {
         loader: 'babel-loader'
       },
       {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              publicPath: 'http://osekwi8dn.bkt.clouddn.com',
+              name: '[name].[ext]'
+            }
+          }
+        ]
+      },
+      {
         test: /\.less$/,
         exclude: /node_modules/,
         use: [
@@ -34,7 +46,7 @@ let baseConfig = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName:'[name]-[hash:4]'
+              localIdentName: '[name]-[hash:4]'
             }
           },
           {
@@ -48,7 +60,7 @@ let baseConfig = {
     alias: {
       '~': path.join(__dirname, '../src')
     },
-    extensions: ['.jsx', '.js','.less']
+    extensions: ['.jsx', '.js', '.less']
   },
   plugins: [
 
