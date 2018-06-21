@@ -30,7 +30,8 @@ let baseConfig = {
             loader: 'file-loader',
             options: {
               publicPath: 'http://osekwi8dn.bkt.clouddn.com',
-              name: '[name].[ext]'
+              name: '[name].[ext]',
+              emitFile: false
             }
           }
         ]
